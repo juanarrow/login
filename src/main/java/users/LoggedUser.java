@@ -29,5 +29,10 @@ public class LoggedUser {
     public String getUsername() {
         return username;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (%s)",getName(), getSurname(), getUsername());
+    }
     
 }

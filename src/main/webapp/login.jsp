@@ -25,8 +25,10 @@
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         LoggedUser user = auth.login(username, password);
-        if(user!=null)
+        if(user!=null){
+            session.setAttribute("user", user);
             response.sendRedirect("home.jsp");
+        }
         else
             response.sendRedirect("index.jsp?error=Usuario o contraseña no válido");
     %>

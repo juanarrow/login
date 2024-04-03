@@ -15,3 +15,22 @@
   font-size:1rem;
   color:rgba(255,0,0,0.5);
 }
+
+
+.min-vh-100 {
+  min-height: 100vh; /* Altura mínima del 100% del viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Utilizar flexbox en el contenedor del contenido */
+.flex-grow-wrapper {
+  flex-grow: 1; /* Permite que el contenedor se expanda */
+  display: flex;
+}
+
+/* Estilo para el menú lateral para que ocupe todo el espacio disponible */
+.menu-lateral {
+  flex-grow: 1; /* Permite que el menú lateral se expanda */
+  background-color: #343a40; /* Color de fondo para el menú lateral */
+}

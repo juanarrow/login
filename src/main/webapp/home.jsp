@@ -1,6 +1,7 @@
 <%-- index.jsp (proyecto Incrementa5) --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="views.LoginView"%>
+<%@page import="views.HomeView"%>
+<%@page import="users.LoggedUser"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +13,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Home</h1>
+    <%
+        LoggedUser user = (LoggedUser)session.getAttribute("user");
+        if(user==null){
+            response.sendRedirect("login.jsp");
+        }
+        else{
+            out.print(new HomeView(user));
+        }
+        
+    %>
     <!-- Bootstrap JavaScript y dependencias -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
