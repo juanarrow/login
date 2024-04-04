@@ -1,6 +1,0 @@
-users/UsersService.class
-connectionpool/ConnectionPool.class
-users/AuthInterface.class
-users/User.class
-crud/CRUD.class
-users/AuthService.class
