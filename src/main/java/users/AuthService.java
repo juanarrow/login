@@ -13,9 +13,9 @@ public class AuthService implements AuthInterface{
     }
 
     @Override
-    public LoggedUser login(String username, String password) throws SQLException{
+    public User login(String username, String password) throws SQLException{
         //Varible conteniendo el Individuo a devolver
-        LoggedUser result = null;
+        User result = null;
         //Construimos la consulta a realizar
         Statement statement = this.conn.createStatement();    
         String sql = String.format("SELECT id, name, surname FROM users WHERE username='%s' AND password='%s'", username, password);
@@ -27,7 +27,7 @@ public class AuthService implements AuthInterface{
             long id = querySet.getLong("id");
             String name = querySet.getString("name");
             String surname = querySet.getString("surname");
-            result = new LoggedUser(id, name, surname, username);
+            result = new User(id, name, surname, username);
         }
         //Cerramos la consulta
         statement.close();    
@@ -45,7 +45,7 @@ public class AuthService implements AuthInterface{
     }
 
     @Override
-    public LoggedUser register(String username, String name, String surname, String password) throws SQLException {
+    public User register(String username, String name, String surname, String password) throws SQLException {
          
          Statement statement = this.conn.createStatement();    
          String sql = String.format("INSERT INTO users (name, surname, username, password) VALUES ('%s', '%s', '%s', '%s')",name, surname, username, password);
@@ -62,7 +62,7 @@ public class AuthService implements AuthInterface{
                  //Devolvemos el identificador del individuo creado
                  long id = generatedKeys.getLong(1);
                  statement.close();
-                 return new LoggedUser(id, name, surname, username);
+                 return new User(id, name, surname, username);
              }
              else {
                  //Aquí detectamos que hemos perdido conexión con el servidor de la

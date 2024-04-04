@@ -1,13 +1,13 @@
 package users;
 
-public class LoggedUser {
+public class User {
     private long id;
     private String name;
     private String surname;
     private String username;
 
 
-    public LoggedUser(long id, String name, String surname, String username){
+    public User(long id, String name, String surname, String username){
         this.id = id;
         this.name = name;
         this.surname = surname;

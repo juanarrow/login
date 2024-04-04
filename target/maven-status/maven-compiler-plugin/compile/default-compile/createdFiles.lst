@@ -1,14 +1,6 @@
 users/UsersService.class
-views/MainView.class
-views/MenuView.class
-users/LoggedUser.class
-views/FooterView.class
-crud/CRUD.class
-views/PostLoginView.class
 connectionpool/ConnectionPool.class
 users/AuthInterface.class
-views/LoginView.class
-views/RegisterView.class
-views/HomeView.class
-views/HeaderView.class
+users/User.class
+crud/CRUD.class
 users/AuthService.class

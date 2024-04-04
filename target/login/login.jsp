@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="connectionpool.ConnectionPool"%>
 <%@page import="users.AuthService"%>
-<%@page import="users.LoggedUser"%>
+<%@page import="users.User"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,7 +24,7 @@
         AuthService auth = new AuthService(pool.getConnection());
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        LoggedUser user = auth.login(username, password);
+        User user = auth.login(username, password);
         if(user!=null){
             session.setAttribute("user", user);
             response.sendRedirect("home.jsp");

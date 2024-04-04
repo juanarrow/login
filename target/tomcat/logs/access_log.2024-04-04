@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:56:12 +0200] "GET /login/index.jsp HTTP/1.1" 500 2416 http-bio-8080-exec-1 426
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:56:12 +0200] "GET /login/index.jsp HTTP/1.1" 500 2546 http-bio-8080-exec-2 6
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:56:19 +0200] "GET /login/index.jsp HTTP/1.1" 500 2416 http-bio-8080-exec-3 36
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:01 +0200] "GET /login/index.jsp HTTP/1.1" 500 2416 http-bio-8080-exec-4 33
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:37 +0200] "GET /login/index.jsp HTTP/1.1" 200 7700 http-bio-8080-exec-5 62
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:37 +0200] "GET /login/assets/js/color-modes.js HTTP/1.1" 304 - http-bio-8080-exec-7 2
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:37 +0200] "GET /login/assets/css/bootstrap.min.css HTTP/1.1" 304 - http-bio-8080-exec-6 1
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:37 +0200] "GET /login/assets/css/sign-in.css HTTP/1.1" 304 - http-bio-8080-exec-8 1
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:37 +0200] "GET /login/assets/js/bootstrap.bundle.min.js HTTP/1.1" 304 - http-bio-8080-exec-9 1
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:46 +0200] "POST /login/login.jsp HTTP/1.1" 302 - http-bio-8080-exec-9 184
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:46 +0200] "GET /login/home.jsp HTTP/1.1" 200 19010 http-bio-8080-exec-9 69
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:46 +0200] "GET /login/dashboard.js HTTP/1.1" 404 987 http-bio-8080-exec-9 1
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:46 +0200] "GET /login/assets/css/dashboard.css HTTP/1.1" 304 - http-bio-8080-exec-8 2
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:48 +0200] "GET /login/logout.jsp HTTP/1.1" 302 - http-bio-8080-exec-9 26
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:48 +0200] "GET /login/login.jsp HTTP/1.1" 302 - http-bio-8080-exec-9 6
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:48 +0200] "GET /login/index.jsp?error=Usuario%20o%20contrase%F1a%20no%20v%E1lido HTTP/1.1" 200 7700 http-bio-8080-exec-9 1
+0:0:0:0:0:0:0:1 - - [04/Apr/2024:09:57:50 +0200] "GET /login/register.jsp HTTP/1.1" 200 8098 http-bio-8080-exec-9 31

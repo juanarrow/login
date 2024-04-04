@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="connectionpool.ConnectionPool"%>
 <%@page import="users.AuthService"%>
-<%@page import="users.LoggedUser"%>
+<%@page import="users.User"%>
 <%
     String username = request.getParameter("username");
     String password = request.getParameter("password");
@@ -15,6 +15,6 @@
     //Pool de conexiones a la base de datos
     ConnectionPool pool = new ConnectionPool("jdbc:mysql://localhost:3306/users", dbuser, dbpassword);
     AuthService auth = new AuthService(pool.getConnection());
-    LoggedUser user = auth.register(name, surname, username, password);
+    User user = auth.register(name, surname, username, password);
     response.sendRedirect("login.jsp");
 %>
