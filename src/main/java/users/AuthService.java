@@ -12,7 +12,7 @@ public class AuthService implements AuthInterface{
         this.conn = conn;
     }
 
-    @Override
+    @Override 
     public LoggedUser login(String username, String password) throws SQLException{
         //Varible conteniendo el Individuo a devolver
         LoggedUser result = null;
