@@ -1,5 +1,5 @@
 <%-- index.jsp (proyecto Incrementa5) --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <%@page import="users.User"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -103,6 +103,8 @@
 </head>
 <body>
     <%
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         User user = (User)session.getAttribute("user");
         if(user!=null)
             response.sendRedirect("home.jsp");

@@ -1,7 +1,7 @@
 <%-- index.jsp (proyecto Incrementa5) --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <%@page import="connectionpool.ConnectionPool"%>
-<%@page import="users.AuthService"%>
+<%@page import="users.UsersService"%>
 <%@page import="users.User"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,16 +23,20 @@
         String dbpassword = "12345678";
         //Pool de conexiones a la base de datos
         ConnectionPool pool = new ConnectionPool("jdbc:mysql://localhost:3306/users", dbuser, dbpassword);
-        AuthService auth = new AuthService(pool.getConnection());
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        User user = auth.login(username, password);
-        if(user!=null){
-            session.setAttribute("user", user);
-            response.sendRedirect("home.jsp");
+        UsersService users = new UsersService(pool.getConnection());
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        User user = (User)session.getAttribute("user");
+        User newUserData = new User(user.getId(),name, surname, user.getUsername());
+        if(users.update(newUserData)==1){
+            session.setAttribute("user", newUserData);
+            response.sendRedirect("profile.jsp");
         }
-        else
-            response.sendRedirect("index.jsp?error=Usuario o contraseña no válido");
+        else{
+            response.sendRedirect("profile.jsp?error=No ha sido posible cambiar la inforamción");
+        }
+
+
     %>
 
     <!-- Bootstrap JavaScript y dependencias -->

@@ -1,9 +1,11 @@
 <%-- index.jsp (proyecto Incrementa5) --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <%@page import="connectionpool.ConnectionPool"%>
 <%@page import="users.AuthService"%>
 <%@page import="users.User"%>
 <%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     String name = request.getParameter("name");

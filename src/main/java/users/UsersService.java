@@ -70,8 +70,27 @@ public class UsersService implements CRUD<User>{
 
     @Override
     public int update(User object) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        //Obtenemos los datos del individuo para actualizar
+        //en la base de datos
+        long id = object.getId();
+        String name = object.getName();
+        String surname = object.getSurname();
+        //Creamos la consulta
+        Statement statement = this.conn.createStatement(); 
+
+        String sql = String.format("UPDATE users SET name = '%s', surname = '%s' WHERE id=%d", name, surname, id);
+        // Ejecución de la consulta
+        int affectedRows = statement.executeUpdate(sql);
+        //Cerramos la consulta
+        statement.close();
+        //Devolvemos excepción si ha habido un error
+        //o si no se ha actualizado ningún registro
+        //y en caso contrario devolvemos el número de
+        //registros que se han actualizado
+        if (affectedRows == 0)
+            throw new SQLException("Creating user failed, no rows affected.");
+        else
+            return affectedRows;
     }
 
     @Override
