@@ -1,9 +1,6 @@
 <%-- index.jsp (proyecto Incrementa5) --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
-<%@page import="connectionpool.ConnectionPool"%>
 <%@page import="users.User"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="users.UsersService"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -111,14 +108,9 @@
         if(user==null){
             response.sendRedirect("login.jsp");
         }
-        //Usuario de la base de datos
-        String dbuser = "juan";
-        //Contraseña de la base de datos
-        String dbpassword = "12345678";
-        //Pool de conexiones a la base de datos
-        ConnectionPool pool = new ConnectionPool("jdbc:mysql://localhost:3306/users", dbuser, dbpassword);
-        UsersService userSvc = new UsersService(pool.getConnection());
-        ArrayList<User> users = userSvc.requestAll("surname ASC, name ASC");
+        String name = user.getName();
+        String surname = user.getSurname();
+        String error = request.getParameter("error");
     %>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -276,42 +268,24 @@
     </div>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Inicio</h1>
-      </div>
-
-    
-
-      <h2>Listado de usuarios</h2>
-      <div class="table-responsive small">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Nombre de usuario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% 
-                
-                for(int i = 0; i <users.size(); i++){
-                    out.print(String.format(
-                            "<tr>"+
-                            "    <td>%d</td>"+
-                            "    <td>%s</td>"+
-                            "    <td>%s</td>"+
-                            "    <td>%s</td>"+
-                            "</tr>", users.get(i).getId(),
-                            users.get(i).getName(),
-                            users.get(i).getSurname(),
-                            users.get(i).getUsername()));
-                }
-            %>
-          </tbody>
-        </table>
-      </div>
+      <form method="POST" action="change-profile.jsp" class="p-3 border rounded shadow-sm">
+        <h4> Tus datos</h4>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="name" id="floatingInput" value="<% out.print(name); %>" placeholder="Your name">
+          <label for="floatingInput">Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="surname" id="floatingPassword" value="<% out.print(surname); %>" placeholder="Your surname">
+          <label for="floatingPassword">Apellidos</label>
+        </div>
+        <%
+        if (error!=null && error.length()!=0)
+          out.print(String.format("<h4 class=\"error\">%s</h4>",error));
+        %>
+       <div class="text-end">
+          <button class="btn btn-primary" type="submit">Cambiar</button>
+        </div>
+      </form>
     </main>
   </div>
 </div>
