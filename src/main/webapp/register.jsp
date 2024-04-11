@@ -110,7 +110,6 @@
             response.sendRedirect("home.jsp");
         else{
             String error = request.getParameter("error");
-            
         }
         
     %>

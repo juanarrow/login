@@ -105,12 +105,20 @@
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         User user = (User)session.getAttribute("user");
+        String name = null;
+        String surname = null;
+        String error = request.getParameter("error");
         if(user==null){
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+            response.setDateHeader("Expires", 0); // Proxies.
             response.sendRedirect("login.jsp");
         }
-        String name = user.getName();
-        String surname = user.getSurname();
-        String error = request.getParameter("error");
+        else{
+          name = user.getName();
+          surname = user.getSurname();
+        }
+        
     %>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -292,5 +300,13 @@
     <!-- Bootstrap JavaScript y dependencias -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script><script src="dashboard.js"></script></body>
+     <script>
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
+</body>
 </body>
 </html>

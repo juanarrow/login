@@ -108,17 +108,24 @@
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         User user = (User)session.getAttribute("user");
+        ArrayList<User> users = null;
         if(user==null){
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+            response.setDateHeader("Expires", 0); // Proxies.
             response.sendRedirect("login.jsp");
         }
-        //Usuario de la base de datos
-        String dbuser = "juan";
-        //Contraseña de la base de datos
-        String dbpassword = "12345678";
-        //Pool de conexiones a la base de datos
-        ConnectionPool pool = new ConnectionPool("jdbc:mysql://localhost:3306/users", dbuser, dbpassword);
-        UsersService userSvc = new UsersService(pool.getConnection());
-        ArrayList<User> users = userSvc.requestAll("surname ASC, name ASC");
+        else{
+          //Usuario de la base de datos
+          String dbuser = "juan";
+          //Contraseña de la base de datos
+          String dbpassword = "12345678";
+          //Pool de conexiones a la base de datos
+          ConnectionPool pool = new ConnectionPool("jdbc:mysql://localhost:3306/users", dbuser, dbpassword);
+          UsersService userSvc = new UsersService(pool.getConnection());
+          users = userSvc.requestAll("surname ASC, name ASC");
+        }
+        
     %>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -295,18 +302,19 @@
           </thead>
           <tbody>
             <% 
-                
-                for(int i = 0; i <users.size(); i++){
-                    out.print(String.format(
-                            "<tr>"+
-                            "    <td>%d</td>"+
-                            "    <td>%s</td>"+
-                            "    <td>%s</td>"+
-                            "    <td>%s</td>"+
-                            "</tr>", users.get(i).getId(),
-                            users.get(i).getName(),
-                            users.get(i).getSurname(),
-                            users.get(i).getUsername()));
+                if(users!=null){
+                  for(int i = 0; i <users.size(); i++){
+                      out.print(String.format(
+                              "<tr>"+
+                              "    <td>%d</td>"+
+                              "    <td>%s</td>"+
+                              "    <td>%s</td>"+
+                              "    <td>%s</td>"+
+                              "</tr>", users.get(i).getId(),
+                              users.get(i).getName(),
+                              users.get(i).getSurname(),
+                              users.get(i).getUsername()));
+                  }
                 }
             %>
           </tbody>
@@ -318,5 +326,13 @@
     <!-- Bootstrap JavaScript y dependencias -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script><script src="dashboard.js"></script></body>
+     <script>
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
+</body>
 </body>
 </html>
